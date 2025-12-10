@@ -1,0 +1,62 @@
+<template>
+  <tm-app>
+    <tm-sheet>
+      <tm-text :font-size="24" _class="text-weight-b" label="基础示例,更多见文档"></tm-text>
+      <tm-divider></tm-divider>
+      <tm-input></tm-input>
+      <tm-input :margin="[0, 24]" password placeholder="请输入密码,显示隐藏内容" prefix="tmicon-lock-fill"></tm-input>
+      <tm-input :inputPadding="[12]" placeholder="文本域，输入自动增高。" confirm-hold confirm-type="换行" showCharNumber
+        :maxlength="100" :border="1" color="grey-5" autoHeight type="textarea"></tm-input>
+    </tm-sheet>
+    <tm-sheet>
+      <tm-text :font-size="24" _class="text-weight-b" label="一些其它常见示例"></tm-text>
+      <tm-divider></tm-divider>
+      <tm-input v-model="test" prefix="tmicon-user-fill" showClear></tm-input>
+      <tm-input v-model="test" prefixLabel="字符统计" :margin="[0, 24]" showCharNumber :maxlength="10"></tm-input>
+      <tm-input v-model="test" suffix="tmicon-clock-fill" showClear></tm-input>
+      <tm-input prefix="tmicon-dollar" suffixLabel="元" :margin="[0, 24]"></tm-input>
+      <tm-input :searchWidth="120" prefix="tmicon-search" searchLabel="搜索" @search="search"></tm-input>
+    </tm-sheet>
+    <tm-sheet>
+      <tm-text :font-size="24" _class="text-weight-b" label="样式配置"></tm-text>
+      <tm-divider></tm-divider>
+      <tm-input color="primary" prefix="tmicon-user-fill"></tm-input>
+      <tm-input prefixLabel="聚焦样式" color="white" focusColor="red" :margin="[0, 24]"
+        prefix="tmicon-user-fill"></tm-input>
+    </tm-sheet>
+    <tm-sheet color="primary">
+      <tm-text :font-size="24" _class="text-weight-b" label="其它"></tm-text>
+      <tm-divider></tm-divider>
+      <tm-input color="primary" focusColor="green" prefix="tmicon-user-fill"></tm-input>
+      <tm-input color="primary" focusColor="green" :margin="[0, 24]" prefix="tmicon-lock-fill"></tm-input>
+    </tm-sheet>
+  </tm-app>
+</template>
+<script setup lang="ts">
+import { ref } from "vue";
+import { list } from "@/services/index";
+
+const test = ref("");
+function search(val) {
+  console.log(val);
+  uni.reLaunch({
+    url: "/pages/login/index",
+  });
+}
+
+// 示例：在 Vue 组件中使用
+const handle = async () => {
+  try {
+    const params = {
+      username: 'your_username',
+      password: 'your_password'
+    };
+    const result = await list(params);
+    console.log('获取成功:', result);
+  } catch (error) {
+    console.error('获取失败:', error);
+  }
+};
+
+</script>
+<style scoped lang="scss"></style>

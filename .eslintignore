@@ -1,0 +1,13 @@
+# dependence
+node_modules/
+uni_modules/
+
+# build
+dist/
+
+# config file
+pnpm-lock.yaml
+*.lock
+*.md
+*.html
+env.d.ts
